@@ -5,8 +5,8 @@ import {
   SafeAreaView,
   ScrollView,
   Pressable,
-  Image,
 } from 'react-native';
+import { NetworkImage } from '../../components/NetworkImage';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ChevronLeft, Star, Clock, IndianRupee } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -67,11 +67,10 @@ export default function SubcategoryScreen() {
               })
             }
           >
-            <Image 
+            <NetworkImage 
               source={{ uri: item.image }} 
               style={styles.cardImage} 
               resizeMode="cover"
-              defaultSource={require('../../../assets/app_logo.jpeg')}
             />
             <LinearGradient
               colors={['transparent', 'rgba(0,0,0,0.65)']}

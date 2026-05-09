@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { 
   ChevronRight, 
@@ -81,7 +81,7 @@ export default function ProfileScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <Header title="Account" />
       
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
@@ -90,7 +90,7 @@ export default function ProfileScreen() {
             <User size={40} color={Colors.light.primary} />
           </View>
           <View style={styles.userInfo}>
-            <Typography variant="h3" weight="800">{user?.name || 'User Name'}</Typography>
+            <Typography variant="h3" weight="700">{user?.name || 'User Name'}</Typography>
             <Typography variant="body2" color={Colors.light.textSecondary}>{user?.phone || '+91 00000 00000'}</Typography>
           </View>
         </View>
@@ -108,7 +108,7 @@ export default function ProfileScreen() {
                 </View>
                 <Typography 
                   variant="body1" 
-                  weight={item.highlight ? "800" : "700"}
+                  weight={item.highlight ? "700" : "700"}
                   style={{ color: item.highlight ? Colors.light.primary : Colors.light.text }}
                 >
                   {item.title}
@@ -120,14 +120,14 @@ export default function ProfileScreen() {
         </View>
 
         <TouchableOpacity style={styles.logoutBtn} onPress={logout}>
-           <Typography variant="body1" weight="800" color={Colors.light.error}>Logout</Typography>
+           <Typography variant="body1" weight="700" color={Colors.light.error}>Logout</Typography>
         </TouchableOpacity>
         
         <View style={styles.footer}>
            <Typography variant="caption" color={Colors.light.textMuted}>Version 1.0.2 (2025)</Typography>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

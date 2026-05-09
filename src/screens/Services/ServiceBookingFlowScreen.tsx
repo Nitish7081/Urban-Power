@@ -20,6 +20,7 @@ export default function ServiceBookingFlowScreen() {
   
   // Form State
   const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [date, setDate] = useState('');
 
@@ -29,8 +30,8 @@ export default function ServiceBookingFlowScreen() {
   };
 
   const handleSubmit = () => {
-    if (!name || !address || !date) {
-      alert('Please fill all fields');
+    if (!name || !phone || !address || !date) {
+      alert('Please fill all details');
       return;
     }
 
@@ -39,6 +40,7 @@ export default function ServiceBookingFlowScreen() {
       title: selectedService.title,
       subtitle: categoryName,
       customerName: name,
+      phone: phone,
       address: address,
       date: date,
       price: selectedService.price,
@@ -97,6 +99,20 @@ export default function ServiceBookingFlowScreen() {
           placeholder="Enter your full name"
           value={name}
           onChangeText={setName}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <View style={styles.inputLabel}>
+          <Typography variant="body2" weight="700" style={{ marginLeft: 8 }}>Phone Number</Typography>
+        </View>
+        <TextInput 
+          style={styles.input}
+          placeholder="Enter 10-digit phone number"
+          value={phone}
+          onChangeText={setPhone}
+          keyboardType="phone-pad"
+          maxLength={10}
         />
       </View>
 

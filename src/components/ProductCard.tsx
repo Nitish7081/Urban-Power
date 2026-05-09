@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Image } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
+import { NetworkImage } from './NetworkImage';
 import { ShoppingBag } from 'lucide-react-native';
 import { RatingStars } from './RatingStars';
 import { Typography } from './Typography';
@@ -36,11 +37,10 @@ export const ProductCard: React.FC<ProductCardProps> = ({
       onPress={onPress}
     >
       <View style={styles.imageContainer}>
-        <Image 
+        <NetworkImage 
           source={{ uri: product.image || 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop' }} 
           style={styles.image} 
           resizeMode="cover" 
-          defaultSource={require('../../assets/app_logo.jpeg')}
         />
         <View style={styles.badge}>
           <Typography variant="tiny" weight="700" color={Colors.light.primary}>20% OFF</Typography>

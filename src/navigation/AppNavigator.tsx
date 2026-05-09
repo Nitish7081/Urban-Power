@@ -53,6 +53,9 @@ import KabadiHistoryScreen from '../screens/Kabadi/KabadiHistoryScreen';
 import SubcategoryScreen from '../screens/Services/SubcategoryScreen';
 import BeautyGenderScreen from '../screens/Services/BeautyGenderScreen';
 import GenderPickerScreen from '../screens/Services/GenderPickerScreen';
+import SearchScreen from '../screens/Main/SearchScreen';
+import ServiceCategoryListScreen from '../screens/Services/ServiceCategoryListScreen';
+import OffersScreen from '../screens/Shop/OffersScreen';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -137,6 +140,9 @@ export default function AppNavigator() {
             <Stack.Screen name="Subcategory" component={SubcategoryScreen} />
             <Stack.Screen name="BeautyGender" component={BeautyGenderScreen} />
             <Stack.Screen name="GenderPicker" component={GenderPickerScreen} />
+            <Stack.Screen name="Search" component={SearchScreen} />
+            <Stack.Screen name="CategoryList" component={ServiceCategoryListScreen} />
+            <Stack.Screen name="Offers" component={OffersScreen} />
           </>
         )}
       </Stack.Navigator>

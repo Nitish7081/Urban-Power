@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TouchableOpacity } from 'react-native';
+import { NetworkImage } from '../../components/NetworkImage';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ChevronLeft, Plus, ShoppingCart } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -47,11 +48,10 @@ export default function ShopProductListScreen() {
           <View style={styles.productGrid}>
             {filteredProducts.map((product) => (
               <View key={product.id} style={styles.productCard}>
-                <Image 
+                <NetworkImage 
                   source={{ uri: product.image }} 
                   style={styles.productImage} 
                   resizeMode="cover"
-                  defaultSource={require('../../../assets/app_logo.jpeg')}
                 />
                 <View style={styles.productInfo}>
                   <Typography variant="body2" weight="700" numberOfLines={2} style={styles.productTitle}>

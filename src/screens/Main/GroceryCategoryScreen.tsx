@@ -5,6 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/Types';
 import { Typography } from '../../components/Typography';
 import { Header } from '../../components/Header';
+import { NetworkImage } from '../../components/NetworkImage';
 import { Colors, Spacing, BorderRadius, Shadows } from '../../constants/Theme';
 import { GROCERY_CATEGORIES } from '../../constants/MockData';
 
@@ -22,7 +23,7 @@ export default function GroceryCategoryScreen() {
       })}
     >
       <View style={styles.iconContainer}>
-        <Image source={{ uri: item.icon }} style={styles.icon} />
+        <NetworkImage source={{ uri: item.icon }} style={styles.icon} resizeMode="cover" />
       </View>
       <Typography variant="body2" weight="700" style={styles.categoryTitle} numberOfLines={2}>
         {item.name}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, ViewStyle, Image } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { NetworkImage } from './NetworkImage';
 import { LinearGradient } from 'expo-linear-gradient';
 import {
   Sparkles,
@@ -91,11 +92,10 @@ export const CategoryCard: React.FC<CategoryCardProps> = ({
         style={styles.iconContainer}
       >
         {isUrl ? (
-          <Image 
+          <NetworkImage 
             source={{ uri: category.icon }} 
             style={styles.iconImage} 
             resizeMode="contain"
-            defaultSource={require('../../assets/app_logo.jpeg')}
           />
         ) : (
           <IconComponent color={Colors.light.primary} size={28} />

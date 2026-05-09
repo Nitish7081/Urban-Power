@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, Image, SafeAreaView, Pressable, Dimensions } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Dimensions } from 'react-native';
+import { NetworkImage } from '../../components/NetworkImage';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import { ShoppingBag, ChevronLeft, Star, Heart, Share2, ShieldCheck, Truck } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -43,7 +44,7 @@ export default function ProductDetailScreen() {
       </View>
 
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Image source={{ uri: product.image }} style={styles.mainImage} resizeMode="cover" />
+        <NetworkImage source={{ uri: product.image }} style={styles.mainImage} resizeMode="cover" />
         
         <View style={styles.content}>
           <View style={styles.categoryRow}>

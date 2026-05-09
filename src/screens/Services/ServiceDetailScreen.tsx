@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
-import { View, StyleSheet, ScrollView, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, ScrollView, Dimensions } from 'react-native';
+import { NetworkImage } from '../../components/NetworkImage';
 import { useRoute, RouteProp, useNavigation } from '@react-navigation/native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Animated, { 
@@ -77,11 +78,11 @@ export default function ServiceDetailScreen() {
         scrollEventThrottle={16}
       >
         <View style={styles.imageContainer}>
-          {service?.image ? (
-            <Image source={{ uri: service.image }} style={styles.image} />
-          ) : (
-            <View style={[styles.image, { backgroundColor: Colors.light.surface }]} />
-          )}
+          <NetworkImage 
+            source={service?.image ? { uri: service.image } : { uri: '' }} 
+            style={styles.image} 
+            resizeMode="cover"
+          />
           <View style={[styles.backButtonOuter, { top: insets.top + Spacing.sm }]}>
             <View style={styles.backButtonInner}>
               <ChevronLeft 

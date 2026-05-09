@@ -64,7 +64,7 @@ export const CATEGORIES: Category[] = [
       },
       {
         id: 's1b', title: 'Sofa Cleaning',
-        image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=600&auto=format&fit=crop',
+        image: 'https://images.unsplash.com/photo-1550963295-019d8a8a61c5?q=80&w=600&auto=format&fit=crop',
         rating: 4.6, reviews: 5.2, price: 599, duration: '1 hr',
       },
       {
@@ -138,9 +138,9 @@ export const CATEGORIES: Category[] = [
     icon: 'wrench',
     services: [
       { id: 'c3s1', title: 'Electrician', image: 'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=600&auto=format&fit=crop', rating: 4.8, reviews: 25.4, price: 199, duration: '1 hr' },
-      { id: 'c3s2', title: 'Carpenter', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop', rating: 4.7, reviews: 18.2, price: 249, duration: '1 hr' },
+      { id: 'c3s2', title: 'Carpenter', image: 'https://images.unsplash.com/photo-1595844730298-b9f0ff98ffd0?q=80&w=600&auto=format&fit=crop', rating: 4.7, reviews: 18.2, price: 249, duration: '1 hr' },
       { id: 'c3s3', title: 'AC Repair & Service', image: 'https://images.unsplash.com/photo-1518081461904-9d8f136351c2?q=80&w=600&auto=format&fit=crop', rating: 4.9, reviews: 44.2, price: 499, duration: '45 mins' },
-      { id: 'c3s4', title: 'RO / Water Purifier Service', image: 'https://images.unsplash.com/photo-1634027732002-36c14101e483?q=80&w=600&auto=format&fit=crop', rating: 4.6, reviews: 12.1, price: 299, duration: '1 hr' },
+      { id: 'c3s4', title: 'RO / Water Purifier Service', image: 'https://images.unsplash.com/photo-1585837582813-e1518ed41aa1?q=80&w=600&auto=format&fit=crop', rating: 4.6, reviews: 12.1, price: 299, duration: '1 hr' },
       { id: 'c3s5', title: 'Plumber', image: 'https://images.unsplash.com/photo-1504148455328-c376907d081c?q=80&w=600&auto=format&fit=crop', rating: 4.8, reviews: 21.3, price: 249, duration: '1 hr' },
     ],
   },
@@ -453,7 +453,7 @@ export const PRODUCTS = [
     id: 'p_banana', 
     title: 'Banana (Dozen)', 
     price: 60, 
-    image: 'https://images.unsplash.com/photo-1571771894821-ad99026.png', 
+    image: 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?w=800', 
     category: 'Fruits',
     subcategory: 'Fresh Fruits',
     description: 'Fresh ripe bananas.'
@@ -545,85 +545,85 @@ export const GROCERY_CATEGORIES = [
   { 
     id: 'g_grains', 
     name: 'Grains', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2541/2541936.png',
+    icon: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Atta', 'Rice', 'Suji', 'Poha']
   },
   { 
     id: 'g_pulses', 
     name: 'Pulses', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2666/2666505.png',
+    icon: 'https://images.unsplash.com/photo-1585914924626-45adac9e6b42?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Arhar Dal', 'Moong Dal', 'Masoor Dal', 'Chana Dal', 'Rajma', 'Chole']
   },
   { 
     id: 'g_oil', 
     name: 'Oil & Ghee', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/1045/1045009.png',
+    icon: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Mustard Oil', 'Refined Oil', 'Desi Ghee', 'Vanaspati']
   },
   { 
     id: 'g_spices', 
     name: 'Spices', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3659/3659898.png',
+    icon: 'https://images.unsplash.com/photo-1532336414038-cf19250c5757?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Whole Spices', 'Powder Masala', 'Garam Masala', 'Kitchen Masala Mix']
   },
   { 
     id: 'g_snacks', 
     name: 'Snacks', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2555/2555013.png',
+    icon: 'https://images.unsplash.com/photo-1599490659213-e2b9527bb087?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Biscuit', 'Namkeen', 'Chips']
   },
   { 
     id: 'g_beverages', 
     name: 'Beverages', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2202/2202029.png',
+    icon: 'https://images.unsplash.com/photo-1544787210-2211d430c72d?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Tea', 'Coffee', 'Soft Drinks', 'Juices']
   },
   { 
     id: 'g_dairy', 
     name: 'Dairy', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2038/2038031.png',
+    icon: 'https://images.unsplash.com/photo-1550583724-1255818c0533?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Milk', 'Curd', 'Butter', 'Paneer', 'Cheese']
   },
   { 
     id: 'g_sweets', 
     name: 'Sweets & Chocolates', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3050/3050221.png',
+    icon: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Chocolates', 'Candies', 'Mithai']
   },
   { 
     id: 'g_cleaning', 
     name: 'Cleaning & Household', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3103/3103130.png',
+    icon: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Detergent', 'Dishwash', 'Floor Cleaner', 'Toilet Cleaner']
   },
   { 
     id: 'g_personal', 
     name: 'Personal Care', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2952/2952136.png',
+    icon: 'https://images.unsplash.com/photo-1559591937-e43542385153?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Soap', 'Shampoo', 'Toothpaste', 'Hair Oil']
   },
   { 
     id: 'g_condiments', 
     name: 'Condiments', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2202/2202029.png',
+    icon: 'https://images.unsplash.com/photo-1587132137056-bfbf0166836e?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Pickles', 'Sauces & Ketchup', 'Jams & Spreads']
   },
   { 
     id: 'g_fruits', 
     name: 'Fruits', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3103/3103130.png',
+    icon: 'https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Fresh Fruits']
   },
   { 
     id: 'g_vegetables', 
     name: 'Vegetables', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2666/2666505.png',
+    icon: 'https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Fresh Vegetables']
   },
   { 
     id: 'g_bakery', 
     name: 'Bakery', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2555/2555013.png',
+    icon: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Breads', 'Cakes', 'Buns', 'Cookies']
   },
 ];
@@ -632,61 +632,61 @@ export const SHOP_CATEGORIES = [
   { 
     id: 's_fashion', 
     name: 'Fashion', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3050/3050221.png',
+    icon: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Men\'s Wear', 'Women\'s Wear', 'Kids Wear', 'Footwear', 'Bags & Accessories', 'Jewellery']
   },
   { 
     id: 's_electronics', 
     name: 'Electronic', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3659/3659898.png',
+    icon: 'https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Mobile Phones', 'Laptop & Computers', 'Accessories', 'Charger', 'Earphones', 'Home Entertainment', 'TV', 'Speaker', 'Smart Gadgets']
   },
   { 
     id: 's_home', 
     name: 'Home & Kitchen', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2038/2038031.png',
+    icon: 'https://images.unsplash.com/photo-1556911220-e150223eaa77?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Kitchen Appliances', 'Cookware & Utensils', 'Home Decor', 'Furniture', 'Storage & Organizer']
   },
   { 
     id: 's_beauty', 
     name: 'Beauty', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3103/3103130.png',
+    icon: 'https://images.unsplash.com/photo-1596462502278-27bfdc4033c8?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Makeup Products', 'Skincare', 'Hair Care', 'Salon Products', 'Grooming Kits']
   },
   { 
     id: 's_kids', 
     name: 'Kids', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2555/2555013.png',
+    icon: 'https://images.unsplash.com/photo-1513159419869-1134277df677?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Toys & Games', 'Baby Care', 'School Supplies', 'Clothing']
   },
   { 
     id: 's_sports', 
     name: 'Sports', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/1045/1045009.png',
+    icon: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Gym Equipment', 'Yoga Accessories', 'Sports Items']
   },
   { 
     id: 's_automobile', 
     name: 'Automobile', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2555/2555013.png',
+    icon: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Car Accessories', 'Bike Accessories', 'Spare Parts']
   },
   { 
     id: 's_stationery', 
     name: 'Stationery', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2202/2202029.png',
+    icon: 'https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Books', 'Notebooks', 'Office Supplies', 'Printer Accessories']
   },
   { 
     id: 's_pet', 
     name: 'Pet Care', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2952/2952136.png',
+    icon: 'https://images.unsplash.com/photo-1583337130417-3346a1be7dee?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Pet Food', 'Accessories', 'Grooming Products']
   },
   { 
     id: 's_hardware', 
     name: 'Hardware & Tools', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2202/2202029.png',
+    icon: 'https://images.unsplash.com/photo-1581147036324-c17da42e16c2?q=80&w=300&auto=format&fit=crop',
     subcategories: ['Electrical', 'Plumbing', 'Construction']
   },
 ];

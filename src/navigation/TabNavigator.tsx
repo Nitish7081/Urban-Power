@@ -1,67 +1,72 @@
-import React from 'react';
-import { View, StyleSheet, Pressable, ScrollView, Image } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, Pressable, Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { 
-  Home, 
-  Sparkles, 
-  Headphones, 
-  User, 
-  ShoppingCart, 
-  Package, 
-  Truck, 
+import {
+  Home,
+  Headphones,
+  User,
+  ShoppingCart,
+  Package,
+  Truck,
   ShoppingBag,
-  Search
+  Search,
 } from 'lucide-react-native';
 import { TabParamList, RootStackParamList } from './Types';
 import { useCartStore } from '../store/useCartStore';
 
 import { Typography } from '../components/Typography';
-import { Colors, Spacing, Shadows, BorderRadius } from '../constants/Theme';
+import { Colors, Spacing, Shadows } from '../constants/Theme';
 
 import HomeScreen from '../screens/Main/HomeScreen';
-import CategoryScreen from '../screens/Services/CategoryScreen';
 import HelpSupportScreen from '../screens/Support/HelpSupportScreen';
 import ProfileScreen from '../screens/Account/ProfileScreen';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
-/**
- * Custom Top Tab Bar Component (Amazon/Flipkart Style)
- */
+// ─────────────────────────────────────────────────────────────
+// Level 1: Shopping / Grocery / Kabadi / Cart strip
+// ─────────────────────────────────────────────────────────────
 const TopTabs = () => {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const cartCount = useCartStore((s) => s.items.reduce((total, item) => total + item.quantity, 0));
+  const cartCount = useCartStore((s) =>
+    s.items.reduce((total, item) => total + item.quantity, 0),
+  );
 
   const tabs = [
-    { id: 'shop', label: 'Shopping', icon: ShoppingBag, route: 'ShopCategory' },
-    { id: 'grocery', label: 'Grocery', icon: Package, route: 'GroceryCategory' },
-    { id: 'kabadi', label: 'Kabadi', icon: Truck, route: 'KabadiCategory' },
-    { id: 'cart', label: 'Cart', icon: ShoppingCart, route: 'Cart', count: cartCount },
+    { id: 'shop',    label: 'Shopping', icon: ShoppingBag,  route: 'ShopCategory' },
+    { id: 'grocery', label: 'Grocery',  icon: Package,       route: 'GroceryCategory' },
+    { id: 'kabadi',  label: 'Kabadi',   icon: Truck,         route: 'KabadiCategory' },
+    { id: 'cart',    label: 'Cart',     icon: ShoppingCart,  route: 'Cart', count: cartCount },
   ];
 
   return (
     <View style={styles.topTabsContainer}>
       <View style={styles.topTabsContent}>
         {tabs.map((tab) => (
-          <Pressable 
-            key={tab.id} 
-            style={styles.topTabItem} 
+          <Pressable
+            key={tab.id}
+            style={styles.topTabItem}
             onPress={() => navigation.navigate(tab.route as any)}
           >
             <View style={styles.topTabIconWrapper}>
               <tab.icon size={24} color={Colors.light.primary} strokeWidth={2.5} />
               {tab.count !== undefined && tab.count > 0 && (
                 <View style={styles.badge}>
-                  <Typography variant="tiny" color="#fff" weight="900" style={{ fontSize: 9 }}>
+                  <Typography variant="tiny" color="#fff" weight="700" style={{ fontSize: 9 }}>
                     {tab.count}
                   </Typography>
                 </View>
               )}
             </View>
-            <Typography variant="tiny" weight="800" color={Colors.light.text} style={styles.topTabLabel}>
+            <Typography
+              variant="tiny"
+              weight="700"
+              color={Colors.light.text}
+              style={styles.topTabLabel}
+            >
               {tab.label}
             </Typography>
           </Pressable>
@@ -71,48 +76,54 @@ const TopTabs = () => {
   );
 };
 
+// ─────────────────────────────────────────────────────────────
+// Level 2: Logo + Search bar row
+// ─────────────────────────────────────────────────────────────
+const BrandHeader = () => {
+  const navigation = useNavigation<any>();
+  return (
+    <View style={styles.headerMainRow}>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require('../../assets/app_logo.jpeg')}
+          style={styles.logoImage}
+          resizeMode="contain"
+        />
+        <Typography variant="h4" weight="700" color={Colors.light.text} style={styles.logoText}>
+          Urban Power
+        </Typography>
+      </View>
+
+      <Pressable style={styles.searchBar} onPress={() => navigation.navigate('Search' as any)}>
+        <Search size={16} color={Colors.light.textMuted} />
+        <Typography variant="body2" color={Colors.light.textMuted} style={styles.searchText}>
+          Search services...
+        </Typography>
+      </Pressable>
+    </View>
+  );
+};
+
+// ─────────────────────────────────────────────────────────────
+// Main Tab Navigator
+// ─────────────────────────────────────────────────────────────
 export default function TabNavigator() {
   const insets = useSafeAreaInsets();
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const [activeTab, setActiveTab] = useState<string>('Home');
+
+  const isHome = activeTab === 'Home';
 
   return (
     <View style={styles.safeArea}>
-      {/* ═══════════════════════════════════════════════
-          LEVEL 1 & 2: Fixed Header
-      ═══════════════════════════════════════════════ */}
-      <View style={[styles.headerWrapper, { paddingTop: Math.max(insets.top, 10) }]}>
-        {/* Level 1: Premium Category Strip */}
-        <TopTabs />
-
-        {/* Level 2: Brand Row + Search */}
-        <View style={styles.headerMainRow}>
-          {/* ACTUAL LOGO IMAGE + TEXT */}
-          <View style={styles.logoContainer}>
-            <Image 
-              source={require('../../assets/app_logo.jpeg')} 
-              style={styles.logoImage}
-              resizeMode="contain"
-            />
-            <Typography variant="h4" weight="900" color={Colors.light.text} style={styles.logoText}>
-              Urban Power
-            </Typography>
-          </View>
-          
-          <Pressable 
-            style={styles.searchBar}
-            onPress={() => { /* Open Search */ }}
-          >
-            <Search size={16} color={Colors.light.textMuted} />
-            <Typography variant="body2" color={Colors.light.textMuted} style={styles.searchText}>
-              Search services...
-            </Typography>
-          </Pressable>
+      {/* ── Conditional Header (Home tab only) ── */}
+      {isHome && (
+        <View style={[styles.headerWrapper, { paddingTop: Math.max(insets.top, 10) }]}>
+          <TopTabs />
+          <BrandHeader />
         </View>
-      </View>
+      )}
 
-      {/* ═══════════════════════════════════════════════
-          LEVEL 3: Bottom Navigation
-      ═══════════════════════════════════════════════ */}
+      {/* ── Bottom Tab Navigator ── */}
       <Tab.Navigator
         screenOptions={({ route }) => ({
           headerShown: false,
@@ -120,20 +131,30 @@ export default function TabNavigator() {
           tabBarInactiveTintColor: '#777777',
           tabBarStyle: [
             styles.bottomTabBar,
-            { height: 70 + insets.bottom, paddingBottom: insets.bottom > 0 ? insets.bottom : 12 }
+            { height: 70 + insets.bottom, paddingBottom: insets.bottom > 0 ? insets.bottom : 12 },
           ],
           tabBarLabelStyle: styles.bottomTabLabel,
           tabBarIcon: ({ color, focused }) => {
             const size = 24;
-            if (route.name === 'Home') return <Home size={size} color={color} strokeWidth={focused ? 2.5 : 2} />;
-            if (route.name === 'Help & Support') return <Headphones size={size} color={color} strokeWidth={focused ? 2.5 : 2} />;
-            if (route.name === 'Account') return <User size={size} color={color} strokeWidth={focused ? 2.5 : 2} />;
+            if (route.name === 'Home')
+              return <Home size={size} color={color} strokeWidth={focused ? 2.5 : 2} />;
+            if (route.name === 'Help & Support')
+              return <Headphones size={size} color={color} strokeWidth={focused ? 2.5 : 2} />;
+            if (route.name === 'Account')
+              return <User size={size} color={color} strokeWidth={focused ? 2.5 : 2} />;
             return null;
           },
         })}
+        screenListeners={{
+          // Track which tab is active so we can show/hide the header
+          state: (e) => {
+            const state = e.data.state;
+            const routeName = state.routes[state.index]?.name ?? 'Home';
+            setActiveTab(routeName);
+          },
+        }}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
-
         <Tab.Screen name="Help & Support" component={HelpSupportScreen} />
         <Tab.Screen name="Account" component={ProfileScreen} />
       </Tab.Navigator>
@@ -141,10 +162,13 @@ export default function TabNavigator() {
   );
 }
 
+// ─────────────────────────────────────────────────────────────
+// Styles
+// ─────────────────────────────────────────────────────────────
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: Colors.light.white },
-  
-  /* Header Wrapper */
+
+  /* Conditional header wrapper */
   headerWrapper: {
     backgroundColor: '#FFFFFF',
     zIndex: 100,
@@ -241,7 +265,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
   },
 
-  /* Bottom Tab Styles */
+  /* Bottom Tab Bar */
   bottomTabBar: {
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,

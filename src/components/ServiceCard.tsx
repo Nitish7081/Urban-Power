@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Image, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable } from 'react-native';
+import { NetworkImage } from './NetworkImage';
 import { MinimalService } from '../constants/MockData';
 import { Typography } from './Typography';
 import { RatingStars } from './RatingStars';
@@ -45,11 +46,10 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
       ]}
       onPress={onPress}
     >
-      <Image 
+      <NetworkImage 
         source={{ uri: service.image || 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=600&auto=format&fit=crop' }} 
         style={styles.image} 
         resizeMode="cover"
-        defaultSource={require('../../assets/app_logo.jpeg')}
       />
 
       <View style={styles.content}>

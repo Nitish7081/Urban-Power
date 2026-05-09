@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { View, StyleSheet, FlatList, Image, Dimensions, ViewToken } from 'react-native';
+import { View, StyleSheet, FlatList, Dimensions, ViewToken } from 'react-native';
+import { NetworkImage } from './NetworkImage';
 import { Colors, Spacing, BorderRadius } from '../constants/Theme';
 
 const { width } = Dimensions.get('window');
@@ -53,11 +54,10 @@ export const BannerCarousel: React.FC<BannerCarouselProps> = React.memo(({ data,
         viewabilityConfig={{ itemVisiblePercentThreshold: 50 }}
         renderItem={({ item }) => (
           item?.image ? (
-            <Image 
+            <NetworkImage 
               source={typeof item.image === 'string' ? { uri: item.image } : item.image} 
               style={styles.image} 
               resizeMode="cover"
-              defaultSource={require('../../assets/app_logo.jpeg')}
             />
           ) : (
             <View style={[styles.image, { backgroundColor: Colors.light.surface }]} />

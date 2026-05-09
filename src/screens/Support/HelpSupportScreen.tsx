@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TouchableOpacity, Linking } from 'react-native';
+import { View, StyleSheet, ScrollView, Pressable, TouchableOpacity, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { 
   ChevronRight, 
@@ -51,26 +51,26 @@ export default function HelpSupportScreen() {
   ];
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View style={styles.safeArea}>
       <Header title="Help & Support" />
       
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <View style={styles.contactSection}>
-          <Typography variant="h3" weight="800" style={styles.sectionTitle}>Contact Us</Typography>
+          <Typography variant="h3" weight="700" style={styles.sectionTitle}>Contact Us</Typography>
           <View style={styles.actionGrid}>
             {supportActions.map((item) => (
               <TouchableOpacity key={item.id} style={styles.actionCard} onPress={item.action}>
                 <View style={styles.iconCircle}>
                    <item.icon size={24} color={Colors.light.primary} />
                 </View>
-                <Typography variant="body2" weight="800">{item.title}</Typography>
+                <Typography variant="body2" weight="700">{item.title}</Typography>
               </TouchableOpacity>
             ))}
           </View>
         </View>
 
         <View style={styles.topicsSection}>
-          <Typography variant="h3" weight="800" style={styles.sectionTitle}>Help Topics</Typography>
+          <Typography variant="h3" weight="700" style={styles.sectionTitle}>Help Topics</Typography>
           <View style={styles.topicsList}>
             {helpTopics.map((item) => (
               <Pressable 
@@ -94,7 +94,7 @@ export default function HelpSupportScreen() {
            </Typography>
         </View>
       </ScrollView>
-    </SafeAreaView>
+    </View>
   );
 }
 

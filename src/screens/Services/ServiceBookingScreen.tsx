@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TextInput, Dimensions, BackHandler } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TextInput, Dimensions, BackHandler } from 'react-native';
+import { NetworkImage } from '../../components/NetworkImage';
 import { useNavigation, useRoute, useFocusEffect } from '@react-navigation/native';
 import { ChevronLeft, Calendar, User, MapPin, CheckCircle2, Star, Clock, ShieldCheck } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -68,7 +69,7 @@ export default function ServiceBookingScreen() {
 
   const handleSubmit = () => {
     if (!name || !phone || !address || !date) {
-      alert('Please fill all fields');
+      alert('Please fill all details');
       return;
     }
 
@@ -78,6 +79,7 @@ export default function ServiceBookingScreen() {
       title: selectedService.title,
       subtitle: categoryName,
       customerName: name,
+      phone: phone,
       address: address,
       date: date,
       price: selectedService.price,
@@ -96,7 +98,7 @@ export default function ServiceBookingScreen() {
           style={styles.serviceCard}
           onPress={() => handleServiceSelect(item)}
         >
-          <Image source={{ uri: item.image }} style={styles.serviceImage} />
+          <NetworkImage source={{ uri: item.image }} style={styles.serviceImage} />
           <View style={styles.serviceInfo}>
             <Typography variant="body1" weight="800">{item.title}</Typography>
             <View style={styles.metaRow}>
@@ -119,7 +121,7 @@ export default function ServiceBookingScreen() {
   const renderStep2 = () => (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.formContainer}>
       <View style={styles.selectedHeader}>
-        <Image source={{ uri: selectedService.image }} style={styles.smallImage} />
+        <NetworkImage source={{ uri: selectedService.image }} style={styles.smallImage} />
         <View style={{ marginLeft: Spacing.md }}>
           <Typography variant="body1" weight="800">{selectedService.title}</Typography>
           <Typography variant="tiny" color={Colors.light.textSecondary}>Professional {categoryName}</Typography>
@@ -138,6 +140,21 @@ export default function ServiceBookingScreen() {
           placeholder="Enter full name"
           value={name}
           onChangeText={setName}
+        />
+      </View>
+
+      <View style={styles.inputGroup}>
+        <View style={styles.inputLabel}>
+          <Clock size={18} color={Colors.light.primary} />
+          <Typography variant="body2" weight="700" style={{ marginLeft: 8 }}>Phone Number</Typography>
+        </View>
+        <TextInput 
+          style={styles.input}
+          placeholder="Enter 10-digit phone number"
+          value={phone}
+          onChangeText={setPhone}
+          keyboardType="phone-pad"
+          maxLength={10}
         />
       </View>
 

@@ -59,9 +59,9 @@ const MAIN_VERTICALS = [
 
 // ─── Banner images (URL-based for reliability) ──────────────────────────────
 const BANNERS = [
-  { id: 'b1', image: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=80&w=800&auto=format&fit=crop' },
-  { id: 'b2', image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=800&auto=format&fit=crop' },
-  { id: 'b3', image: 'https://images.unsplash.com/photo-1518081461904-9d8f136351c2?q=80&w=800&auto=format&fit=crop' },
+  { id: 'b1', image: 'https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?q=80&w=800&auto=format&fit=crop' }, // Cleaning
+  { id: 'b2', image: 'https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop' }, // Shopping
+  { id: 'b3', image: 'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?q=80&w=800&auto=format&fit=crop' }, // Services
 ];
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -271,7 +271,7 @@ export default function HomeScreen() {
           <View style={styles.sectionHeaderWrapper}>
             <SectionHeader
               title="Keep Shopping For"
-              onSeeAll={() => navigation.navigate('CategoryDetail', { categoryId: 'all', categoryName: 'All Services', isTab: false })}
+              onSeeAll={() => navigation.navigate('CategoryList')}
             />
           </View>
           <FlatList
@@ -295,7 +295,7 @@ export default function HomeScreen() {
           <View style={styles.sectionHeaderWrapper}>
             <SectionHeader
               title="Deals For You"
-              onSeeAll={() => navigation.navigate('ShoppingScreen')}
+              onSeeAll={() => navigation.navigate('Offers')}
             />
           </View>
           <FlatList

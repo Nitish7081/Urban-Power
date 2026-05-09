@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TextInput } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TextInput, Modal, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ChevronLeft, Calendar, Clock, MapPin, Truck } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -28,7 +28,41 @@ export default function KabadiFormScreen() {
   const [selectedSlot, setSelectedSlot] = useState('Morning (9-12)');
   const [instructions, setInstructions] = useState('');
   const [name, setName] = useState(user?.name || '');
+  const [phone, setPhone] = useState(user?.phone || '');
   const [weight, setWeight] = useState('');
+
+  // Pickup Address state
+  const defaultAddress = addresses?.[0]?.details || 'Add address in profile';
+  const defaultLabel   = addresses?.[0]?.type   || 'Home';
+  const [pickupAddress, setPickupAddress] = useState(defaultAddress);
+  const [addressLabel,  setAddressLabel]  = useState(defaultLabel);
+
+  // Address‑edit modal state
+  const [addressModalVisible, setAddressModalVisible] = useState(false);
+  const [draftHouse,    setDraftHouse]    = useState('');
+  const [draftArea,     setDraftArea]     = useState('');
+  const [draftCity,     setDraftCity]     = useState('');
+  const [draftLandmark, setDraftLandmark] = useState('');
+
+  const openAddressModal = () => {
+    // Pre-fill draft fields from current address
+    setDraftHouse('');
+    setDraftArea('');
+    setDraftCity('');
+    setDraftLandmark('');
+    setAddressModalVisible(true);
+  };
+
+  const saveAddress = () => {
+    const parts = [draftHouse, draftArea, draftCity, draftLandmark].filter(Boolean);
+    if (parts.length === 0) {
+      setAddressModalVisible(false);
+      return;
+    }
+    setPickupAddress(parts.join(', '));
+    setAddressLabel('Custom');
+    setAddressModalVisible(false);
+  };
 
   // Generate next 7 days
   const dates = Array.from({ length: 7 }, (_, i) => {
@@ -43,8 +77,8 @@ export default function KabadiFormScreen() {
   });
 
   const handleSchedule = () => {
-    if (!name || !weight) {
-      alert('Please enter your name and estimated weight.');
+    if (!name || !phone || !weight) {
+      alert('Please enter your name, phone and estimated weight.');
       return;
     }
     schedulePickup({
@@ -54,6 +88,7 @@ export default function KabadiFormScreen() {
       timeSlot: selectedSlot,
       estimatedValue: (subcategory?.price || 0) * (parseFloat(weight) || 0),
       userName: name,
+      phone: phone,
       estimatedWeight: weight
     });
     alert('Pickup scheduled successfully!');
@@ -110,6 +145,20 @@ export default function KabadiFormScreen() {
               />
             </View>
           </View>
+          
+          <View style={[styles.inputGroup, { marginTop: Spacing.md }]}>
+             <View style={{ flex: 1 }}>
+                <Typography variant="caption" color={Colors.light.textSecondary} style={{ marginBottom: 4 }}>PHONE NUMBER</Typography>
+                <TextInput 
+                  style={styles.singleLineInput}
+                  placeholder="Enter 10-digit number"
+                  value={phone}
+                  onChangeText={setPhone}
+                  keyboardType="phone-pad"
+                  maxLength={10}
+                />
+             </View>
+          </View>
         </View>
 
         <View style={styles.section}>
@@ -157,16 +206,84 @@ export default function KabadiFormScreen() {
           <View style={styles.addressCard}>
             <MapPin color={Colors.light.primary} size={24} />
             <View style={{ marginLeft: Spacing.md, flex: 1 }}>
-              <Typography variant="body1" weight="800">{addresses?.[0]?.type || 'Default Home'}</Typography>
+              <Typography variant="body1" weight="800">{addressLabel}</Typography>
               <Typography variant="body2" color={Colors.light.textSecondary} numberOfLines={2}>
-                 {addresses?.[0]?.details || 'Add address in profile'}
+                {pickupAddress}
               </Typography>
             </View>
-            <View style={styles.changeBtn}>
-               <Typography variant="tiny" color={Colors.light.primary} weight="700">CHANGE</Typography>
-            </View>
+            <TouchableOpacity style={styles.changeBtn} onPress={openAddressModal} activeOpacity={0.7}>
+              <Typography variant="tiny" color={Colors.light.primary} weight="700">CHANGE</Typography>
+            </TouchableOpacity>
           </View>
         </View>
+
+        {/* ──── Address Edit Modal ──── */}
+        <Modal
+          visible={addressModalVisible}
+          transparent
+          animationType="slide"
+          onRequestClose={() => setAddressModalVisible(false)}
+        >
+          <KeyboardAvoidingView
+            style={styles.modalOverlay}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          >
+            <View style={styles.modalSheet}>
+              {/* Modal Header */}
+              <View style={styles.modalHeader}>
+                <Typography variant="h3" weight="800">Change Pickup Address</Typography>
+                <TouchableOpacity onPress={() => setAddressModalVisible(false)} activeOpacity={0.7}>
+                  <Typography variant="body1" color={Colors.light.textSecondary}>✕</Typography>
+                </TouchableOpacity>
+              </View>
+
+              {/* House / Flat */}
+              <Typography variant="caption" color={Colors.light.textSecondary} style={styles.modalLabel}>HOUSE / FLAT NO.</Typography>
+              <TextInput
+                style={styles.modalInput}
+                placeholder="e.g. A-421, Shunya Apartments"
+                placeholderTextColor={Colors.light.textMuted}
+                value={draftHouse}
+                onChangeText={setDraftHouse}
+              />
+
+              {/* Area / Street */}
+              <Typography variant="caption" color={Colors.light.textSecondary} style={styles.modalLabel}>AREA / STREET</Typography>
+              <TextInput
+                style={styles.modalInput}
+                placeholder="e.g. Sector 45, Gurugram"
+                placeholderTextColor={Colors.light.textMuted}
+                value={draftArea}
+                onChangeText={setDraftArea}
+              />
+
+              {/* City */}
+              <Typography variant="caption" color={Colors.light.textSecondary} style={styles.modalLabel}>CITY</Typography>
+              <TextInput
+                style={styles.modalInput}
+                placeholder="e.g. Delhi"
+                placeholderTextColor={Colors.light.textMuted}
+                value={draftCity}
+                onChangeText={setDraftCity}
+              />
+
+              {/* Landmark */}
+              <Typography variant="caption" color={Colors.light.textSecondary} style={styles.modalLabel}>LANDMARK (OPTIONAL)</Typography>
+              <TextInput
+                style={styles.modalInput}
+                placeholder="e.g. Near Metro Station"
+                placeholderTextColor={Colors.light.textMuted}
+                value={draftLandmark}
+                onChangeText={setDraftLandmark}
+              />
+
+              {/* Save Button */}
+              <TouchableOpacity style={styles.saveBtn} onPress={saveAddress} activeOpacity={0.85}>
+                <Typography variant="body1" weight="800" color={Colors.light.white}>SAVE ADDRESS</Typography>
+              </TouchableOpacity>
+            </View>
+          </KeyboardAvoidingView>
+        </Modal>
 
         <View style={styles.section}>
           <Typography variant="h3" weight="700" style={styles.sectionTitle}>Instructions (Optional)</Typography>
@@ -312,6 +429,50 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.white,
     borderTopWidth: 1, borderTopColor: Colors.light.borderLight,
     ...Shadows.light.lg,
+  },
+
+  // ── Address Modal Styles ──
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.45)',
+    justifyContent: 'flex-end',
+  },
+  modalSheet: {
+    backgroundColor: Colors.light.white,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    padding: Spacing.xl,
+    paddingBottom: 40,
+    ...Shadows.light.lg,
+  },
+  modalHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Spacing.xl,
+  },
+  modalLabel: {
+    marginBottom: 4,
+    marginTop: Spacing.md,
+  },
+  modalInput: {
+    backgroundColor: Colors.light.surface,
+    borderRadius: BorderRadius.lg,
+    paddingHorizontal: Spacing.lg,
+    paddingVertical: Spacing.md,
+    fontSize: 14,
+    color: Colors.light.text,
+    borderWidth: 1,
+    borderColor: Colors.light.borderLight,
+    marginBottom: Spacing.sm,
+  },
+  saveBtn: {
+    marginTop: Spacing.xl,
+    backgroundColor: Colors.light.primary,
+    borderRadius: BorderRadius.xl,
+    paddingVertical: Spacing.lg,
+    alignItems: 'center',
+    ...Shadows.light.sm,
   },
 });
 

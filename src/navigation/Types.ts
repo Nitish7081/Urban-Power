@@ -83,4 +83,6 @@ export type RootStackParamList = {
   VIPSafety: undefined;
   ClaimWarranty: undefined;
   AccountDetail: undefined;
+  Search: undefined;
+  Offers: undefined;
 };
