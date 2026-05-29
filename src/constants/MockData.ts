@@ -7,7 +7,86 @@ export interface MinimalService {
   price: number;
   duration: string;
   gender?: 'female' | 'male' | 'unisex'; // optional — used for gender-filtered categories
+  subcategories?: string[];
 }
+
+export interface BeautyCategory {
+  name: string;
+  subcategories: string[];
+}
+
+export const beautyCategories: BeautyCategory[] = [
+  {
+    name: 'Facial & Skincare',
+    subcategories: [
+      'Cleanup',
+      'Fruit Facial',
+      'Gold Facial',
+      'Diamond Facial',
+      'Hydra Facial',
+      'Anti-Aging Facial',
+      'Detan Facial',
+      'Acene Treatment',
+      'Skin Polishing',
+    ],
+  },
+  {
+    name: 'Waxing',
+    subcategories: [
+      'Rice Wax',
+      'Chocolate Wax',
+      'Honey Wax',
+      'Full Body Wax',
+      'Bikini Wax',
+      'Roll On Wax',
+    ],
+  },
+  {
+    name: 'Hand & Feet Care',
+    subcategories: ['Manicure', 'Pedicure', 'Spa Pedicure','Spa Manicure', ],
+  },
+  {
+    name: 'Hair Services',
+    subcategories: [
+      'Hair Cut',
+      'Hair Spa',
+      'Hair Smoothing',
+      'Hair Treatment',
+      'Rebonding',
+      'Hair Color',
+      'Global Hair Color',
+      'Highlights',
+      'Hair Straight',
+      'Hair Styling',
+    ],
+  },
+  {
+    name: 'Makeup Categories',
+    subcategories: [
+      ' HD Bridal Makeup',
+      ' Airbrush Bridal Makeup',
+      'Luxury Bridal Makeup',
+      'Signature Bridal Makeup',
+      'Royal Bridal Package',
+      'Engagement Makeup',
+      'Cocktail Party Makeup',
+      'Haldi Makeup',
+      'Mehndi Makeup',
+    ],
+  },
+  {
+    name: 'Party Makeup',
+    subcategories: ['Party Glam Makeup', 'Soft Glam Makeup', 'Nude Makeup', 'Shimmer Makeup','Smokey Eyes Makeup', 'Minimal Makeup','Western Party Look','Traditional Makeup',],
+  },
+  {
+    name: 'Nail Art',
+    subcategories: ['Gel Polish', 'Extension', 'Nail Art Design',],
+  },
+];
+
+const beautySubcategoriesByName = Object.fromEntries(
+  beautyCategories.map((c) => [c.name, c.subcategories]),
+) as Record<string, string[]>;
 
 export interface Review {
   id: string;
@@ -98,33 +177,128 @@ export const CATEGORIES: Category[] = [
     services: [
       // Female
       {
-        id: 's2a', title: 'Make Up Artist',
+        id: 's2a',
+        title: 'Facial & Skincare',
         image: 'https://images.unsplash.com/photo-1487412947147-5cebf100d293?q=80&w=600&auto=format&fit=crop',
-        rating: 4.9, reviews: 15.3, price: 1499, duration: '2 hrs', gender: 'female',
+        rating: 4.9,
+        reviews: 15.3,
+        price: 1499,
+        duration: '2 hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Facial & Skincare'],
       },
       {
-        id: 's2b', title: 'Hair Styling',
+        id: 's2b',
+        title: 'Waxing',
         image: 'https://images.unsplash.com/photo-1560066984-138dadb4c035?q=80&w=600&auto=format&fit=crop',
-        rating: 4.8, reviews: 20.1, price: 799, duration: '1 hr', gender: 'female',
+        rating: 4.8,
+        reviews: 20.1,
+        price: 799,
+        duration: '1 hr',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Waxing'],
       },
       {
-        id: 's2c', title: 'Facial & Skincare',
+        id: 's2c',
+        title: 'Hand & Feet Care',
         image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=600&auto=format&fit=crop',
-        rating: 4.9, reviews: 18.2, price: 999, duration: '1.5 hrs', gender: 'female',
+        rating: 4.9,
+        reviews: 18.2,
+        price: 999,
+        duration: '1.5 hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Hand & Feet Care'],
       },
       {
-        id: 's2d', title: 'Bridal Service',
-        image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop',
-        rating: 4.9, reviews: 12.7, price: 4999, duration: '4-5 hrs', gender: 'female',
+        id: 's2h',
+        title: 'Home Beauty Services',
+        image: 'https://images.unsplash.com/photo-1766763845883-020866685bb6?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 4.9,
+        reviews: 12.7,
+        price: 4999,
+        duration: '4-5 hrs',
+        gender: 'female',
       },
       {
-        id: 's2e', title: 'Home Salon Service',
+        id: 's2i',
+        title: 'Hair Services',
+        image: 'https://images.unsplash.com/photo-1776850476481-2bccba2e35c7?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 4.9,
+        reviews: 12.7,
+        price: 4999,
+        duration: '4-5 hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Hair Services'],
+      },
+      {
+        id: 's2j',
+        title: 'Beauty Academy Categories',
+        image: 'https://images.unsplash.com/photo-1746723375184-5f537d2e6f31?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 4.9,
+        reviews: 12.7,
+        price: 4999,
+        duration: '4-5 hrs',
+        gender: 'female',
+      },
+      {
+        id: 's2e',
+        title: 'Makeup Categories',
         image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=600&auto=format&fit=crop',
-        rating: 4.8, reviews: 22.4, price: 1199, duration: '2 hrs', gender: 'female',
+        rating: 4.8,
+        reviews: 22.4,
+        price: 1199,
+        duration: '2 hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Makeup Categories'],
       },
+      {
+        id: 's2f',
+        title: 'Party Makeup',
+        image: 'https://images.unsplash.com/photo-1768039376092-70e587cb7b94?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 4.9,
+        reviews: 12.7,
+        price: 4999,
+        duration: '4-5 hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Party Makeup'],
+      },
+      {
+        id: 's2g',
+        title: 'Nail Art',
+        image: 'https://images.unsplash.com/photo-1754799670380-17640d939e32?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 4.9,
+        reviews: 12.7,
+        price: 4999,
+        duration: '4-5 hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Nail Art'],
+      },
+      {
+        id: 's2l',
+        title: 'Eye And Beauty Services',
+        image: 'https://images.unsplash.com/photo-1768039376092-70e587cb7b94?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 5.9,
+        reviews: 12.7,
+        price: 999,
+        duration: '1hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Eye And Beauty Services'],
+      },
+      {
+        id: 's2m',
+        title: 'Premium Services',
+        image: 'https://images.unsplash.com/photo-1768039376092-70e587cb7b94?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        rating: 5.9,
+        reviews: 12.7,
+        price: 2999,
+        duration: '1hrs',
+        gender: 'female',
+        subcategories: beautySubcategoriesByName['Premium Services'],
+      },
+
       // Male
       {
-        id: 's2f', title: 'Home Salon Service',
+        id: 's2m', title: 'Home Salon Service',
         image: 'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=600&auto=format&fit=crop',
         rating: 4.7, reviews: 14.5, price: 599, duration: '1 hr', gender: 'male',
       },
@@ -165,7 +339,7 @@ export const CATEGORIES: Category[] = [
     icon: 'autoservice',
     services: [
       { id: 'c5s1', title: 'Car Repair', image: 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop', rating: 4.7, reviews: 9.8, price: 799, duration: '2-4 hrs' },
-      { id: 'c5s2', title: 'Bike Repair', image: 'https://images.unsplash.com/photo-1558981285-6f0c68a44a88?q=80&w=600&auto=format&fit=crop', rating: 4.6, reviews: 12.1, price: 299, duration: '1-2 hrs' },
+      { id: 'c5s2', title: 'Bike Repair', image: 'https://images.unsplash.com/photo-1673870861514-8c72efb696f3?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', rating: 4.6, reviews: 12.1, price: 299, duration: '1-2 hrs' },
       { id: 'c5s3', title: 'Car Wash', image: 'https://images.unsplash.com/photo-1520340719-da78c7eaf7d4?q=80&w=600&auto=format&fit=crop', rating: 4.8, reviews: 20.4, price: 399, duration: '45 mins' },
       { id: 'c5s4', title: 'Denting & Painting', image: 'https://images.unsplash.com/photo-1552158939-d94b13cdb51e?q=80&w=600&auto=format&fit=crop', rating: 4.5, reviews: 4.7, price: 1999, duration: '1-2 days' },
     ],
@@ -617,7 +791,7 @@ export const GROCERY_CATEGORIES = [
   { 
     id: 'g_vegetables', 
     name: 'Vegetables', 
-    icon: 'https://images.unsplash.com/photo-1518977676601-b53f02ac6d31?q=80&w=300&auto=format&fit=crop',
+    icon: 'https://images.unsplash.com/photo-1716558836636-cf1a81f798ca?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: ['Fresh Vegetables']
   },
   { 
@@ -632,7 +806,7 @@ export const SHOP_CATEGORIES = [
   { 
     id: 's_fashion', 
     name: 'Fashion', 
-    icon: 'https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=300&auto=format&fit=crop',
+    icon: 'https://images.unsplash.com/photo-1777628530456-bb93d3a03faf?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: ['Men\'s Wear', 'Women\'s Wear', 'Kids Wear', 'Footwear', 'Bags & Accessories', 'Jewellery']
   },
   { 
@@ -695,7 +869,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k1', 
     title: 'Paper Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2541/2541936.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k1s1', title: 'Newspaper (Raddi)', price: 14 },
       { id: 'k1s2', title: 'Books & Copies', price: 12 },
@@ -706,7 +880,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k2', 
     title: 'Plastic Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2666/2666505.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k2s1', title: 'Plastic Bottles', price: 15 },
       { id: 'k2s2', title: 'Hard Plastic', price: 18 },
@@ -717,7 +891,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k3', 
     title: 'Metal Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/1045/1045009.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k3s1', title: 'Heavy Iron', price: 32 },
       { id: 'k3s2', title: 'Light Iron', price: 28 },
@@ -731,7 +905,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k4', 
     title: 'E-Waste', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3659/3659898.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k4s1', title: 'Old TV / LED', price: 500 },
       { id: 'k4s2', title: 'Computer / Laptop', price: 800 },
@@ -743,7 +917,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k5', 
     title: 'Automobile Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2555/2555013.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k5s1', title: 'Old Car', price: 15000 },
       { id: 'k5s2', title: 'Bike Scrap', price: 3500 },
@@ -753,7 +927,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k6', 
     title: 'Household Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2038/2038031.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k6s1', title: 'Mixed Kabadi', price: 18 },
       { id: 'k6s2', title: 'Old Furniture', price: 50 },
@@ -763,7 +937,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k7', 
     title: 'Industrial Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2202/2202029.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k7s1', title: 'Factory Scrap', price: 45 },
       { id: 'k7s2', title: 'Construction Scrap', price: 38 },
@@ -774,7 +948,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k8', 
     title: 'Battery Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3103/3103130.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k8s1', title: 'Inverter Battery', price: 800 },
       { id: 'k8s2', title: 'Car Battery', price: 600 },
@@ -784,7 +958,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k9', 
     title: 'Glass Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/2952/2952136.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k9s1', title: 'Glass Bottles', price: 5 },
       { id: 'k9s2', title: 'Window Glass', price: 8 },
@@ -794,7 +968,7 @@ export const KABADI_ITEMS = [
   { 
     id: 'k10', 
     title: 'Textile Scrap', 
-    icon: 'https://cdn-icons-png.flaticon.com/512/3050/3050221.png',
+    icon: 'https://images.unsplash.com/photo-1764116858740-832d0f86b86b?fm=jpg&q=60&w=3000&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     subcategories: [
       { id: 'k10s1', title: 'Old Clothes', price: 15 },
       { id: 'k10s2', title: 'Fabric Waste', price: 12 },

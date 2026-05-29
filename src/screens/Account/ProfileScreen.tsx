@@ -11,7 +11,8 @@ import {
   Settings, 
   Info, 
   User,
-  Crown
+  Crown,
+  LifeBuoy,
 } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
 import { Header } from '../../components/Header';
@@ -27,8 +28,7 @@ export default function ProfileScreen() {
       id: 'bookings', 
       title: 'My Bookings', 
       icon: Calendar, 
-      route: 'MyBookings',
-      highlight: true 
+      route: 'Bookings',
     },
     { 
       id: 'plans', 
@@ -71,6 +71,12 @@ export default function ProfileScreen() {
       title: 'Settings', 
       icon: Settings, 
       route: 'Settings' 
+    },
+    { 
+      id: 'support', 
+      title: 'Help & Support', 
+      icon: LifeBuoy, 
+      route: 'HelpSupport' 
     },
     { 
       id: 'about', 

@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TextInput, BackHandler } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TextInput, BackHandler } from 'react-native';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { ChevronLeft, Calendar, User, MapPin, Scale, CheckCircle2 } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -7,6 +7,7 @@ import { Button } from '../../components/Button';
 import { Colors, Spacing, BorderRadius, Shadows } from '../../constants/Theme';
 import { KABADI_ITEMS } from '../../constants/MockData';
 import { useBookingStore } from '../../store/useBookingStore';
+import { NetworkImage } from '../../components/NetworkImage';
 
 export default function KabadiFlowScreen() {
   const navigation = useNavigation<any>();
@@ -83,7 +84,7 @@ export default function KabadiFlowScreen() {
             onPress={() => handleCategorySelect(item)}
           >
             <View style={styles.iconWrapper}>
-              <Image source={{ uri: item.icon }} style={styles.icon} />
+              <NetworkImage source={{ uri: item.icon }} style={styles.icon} resizeMode="cover" />
             </View>
             <Typography variant="tiny" weight="800" align="center" style={styles.categoryName}>
               {item.title}
@@ -103,7 +104,7 @@ export default function KabadiFlowScreen() {
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.formContainer}>
       <View style={styles.selectedHeader}>
         <View style={styles.smallIconWrapper}>
-           <Image source={{ uri: selectedCategory.icon }} style={styles.smallIcon} />
+          <NetworkImage source={{ uri: selectedCategory.icon }} style={styles.smallIcon} resizeMode="cover" />
         </View>
         <View style={{ marginLeft: Spacing.md }}>
           <Typography variant="body1" weight="800">{selectedCategory.title}</Typography>

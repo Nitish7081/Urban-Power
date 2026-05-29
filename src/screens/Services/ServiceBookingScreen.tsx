@@ -14,7 +14,8 @@ const { width } = Dimensions.get('window');
 export default function ServiceBookingScreen() {
   const navigation = useNavigation<any>();
   const route = useRoute<any>();
-  const { categoryId, categoryName, selectedServiceId } = route.params || { categoryId: 'c1', categoryName: 'Cleaning' };
+  const { categoryId, categoryName, selectedServiceId, subcategoryName } =
+    route.params || { categoryId: 'c1', categoryName: 'Cleaning' };
   const addBooking = useBookingStore((state) => state.addBooking);
 
   const category = CATEGORIES.find(c => c.id === categoryId);
@@ -26,7 +27,13 @@ export default function ServiceBookingScreen() {
 
   const [step, setStep] = useState(preSelected ? 2 : 1);
   const [selectedService, setSelectedService] = useState<any>(preSelected);
-  
+
+  const bookingTitle = selectedService
+    ? subcategoryName
+      ? `${selectedService.title} — ${subcategoryName}`
+      : selectedService.title
+    : '';
+
   // Form State
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
@@ -76,7 +83,7 @@ export default function ServiceBookingScreen() {
     addBooking({
       id: Math.random().toString(36).substr(2, 9),
       type: 'Service',
-      title: selectedService.title,
+      title: bookingTitle,
       subtitle: categoryName,
       customerName: name,
       phone: phone,
@@ -123,7 +130,7 @@ export default function ServiceBookingScreen() {
       <View style={styles.selectedHeader}>
         <NetworkImage source={{ uri: selectedService.image }} style={styles.smallImage} />
         <View style={{ marginLeft: Spacing.md }}>
-          <Typography variant="body1" weight="800">{selectedService.title}</Typography>
+          <Typography variant="body1" weight="800">{bookingTitle}</Typography>
           <Typography variant="tiny" color={Colors.light.textSecondary}>Professional {categoryName}</Typography>
         </View>
       </View>
@@ -212,7 +219,7 @@ export default function ServiceBookingScreen() {
       </View>
       <Typography variant="h2" weight="900" style={styles.successTitle}>Booking Confirmed!</Typography>
       <Typography variant="body1" align="center" color={Colors.light.textSecondary} style={styles.successSubtitle}>
-        Your {selectedService.title} has been scheduled for {date}. A professional will contact you soon.
+        Your {bookingTitle} has been scheduled for {date}. A professional will contact you soon.
       </Typography>
       
       <View style={styles.infoCard}>

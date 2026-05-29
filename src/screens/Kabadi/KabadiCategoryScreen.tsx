@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../navigation/Types';
 import { Typography } from '../../components/Typography';
 import { Header } from '../../components/Header';
+import { NetworkImage } from '../../components/NetworkImage';
 import { Colors, Spacing, BorderRadius, Shadows } from '../../constants/Theme';
 import { KABADI_ITEMS } from '../../constants/MockData';
 
@@ -29,7 +30,7 @@ export default function KabadiCategoryScreen() {
               })}
             >
               <View style={styles.iconContainer}>
-                <Image source={{ uri: item.icon }} style={styles.icon} />
+                <NetworkImage source={{ uri: item.icon }} style={styles.icon} resizeMode="cover" />
               </View>
               <Typography variant="body2" weight="700" style={styles.categoryTitle} numberOfLines={2}>
                 {item.title}

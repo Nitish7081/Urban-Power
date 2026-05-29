@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TextInput } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TextInput } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ChevronLeft, Calendar, User, MapPin, CheckCircle2 } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -7,6 +7,7 @@ import { Button } from '../../components/Button';
 import { Colors, Spacing, BorderRadius, Shadows } from '../../constants/Theme';
 import { CATEGORIES } from '../../constants/MockData';
 import { useBookingStore } from '../../store/useBookingStore';
+import { NetworkImage } from '../../components/NetworkImage';
 
 export default function ServiceBookingFlowScreen() {
   const navigation = useNavigation<any>();
@@ -63,7 +64,7 @@ export default function ServiceBookingFlowScreen() {
           style={styles.serviceCard}
           onPress={() => handleServiceSelect(item)}
         >
-          <Image source={{ uri: item.image }} style={styles.serviceImage} />
+          <NetworkImage source={{ uri: item.image }} style={styles.serviceImage} resizeMode="cover" />
           <View style={styles.serviceInfo}>
             <Typography variant="body1" weight="800">{item.title}</Typography>
             <Typography variant="body2" color={Colors.light.textSecondary}>{item.duration}</Typography>
@@ -80,7 +81,7 @@ export default function ServiceBookingFlowScreen() {
   const renderStep2 = () => (
     <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.formContainer}>
       <View style={styles.selectedHeader}>
-        <Image source={{ uri: selectedService.image }} style={styles.smallImage} />
+        <NetworkImage source={{ uri: selectedService.image }} style={styles.smallImage} resizeMode="cover" />
         <View style={{ marginLeft: Spacing.md }}>
           <Typography variant="body1" weight="800">{selectedService.title}</Typography>
           <Typography variant="tiny" color={Colors.light.textSecondary}>{categoryName}</Typography>

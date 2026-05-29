@@ -1,12 +1,12 @@
 {
   "expo": {
-    "name": "Urbon Power",
-    "slug": "urbon-power",
+    "name": "Urban Power",
+    "slug": "urban-power",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "newArchEnabled": true,
+    "newArchEnabled": false,
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -14,7 +14,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.urbonpower"
+      "bundleIdentifier": "com.anonymous.urbanpower"
     },
     "android": {
       "adaptiveIcon": {
@@ -23,10 +23,13 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.urbonpower"
+      "package": "com.anonymous.urbanpower"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      "expo-asset"
+    ]
   }
 }

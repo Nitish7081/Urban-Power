@@ -51,6 +51,7 @@ import KabadiBookingScreen from '../screens/Kabadi/KabadiBookingScreen';
 import KabadiStatusScreen from '../screens/Kabadi/KabadiStatusScreen';
 import KabadiHistoryScreen from '../screens/Kabadi/KabadiHistoryScreen';
 import SubcategoryScreen from '../screens/Services/SubcategoryScreen';
+import BeautyServiceSubcategoryScreen from '../screens/Services/BeautyServiceSubcategoryScreen';
 import BeautyGenderScreen from '../screens/Services/BeautyGenderScreen';
 import GenderPickerScreen from '../screens/Services/GenderPickerScreen';
 import SearchScreen from '../screens/Main/SearchScreen';
@@ -138,6 +139,7 @@ export default function AppNavigator() {
             <Stack.Screen name="ServiceBookingScreen" component={ServiceBookingScreen} />
             {/* Subcategory Screens */}
             <Stack.Screen name="Subcategory" component={SubcategoryScreen} />
+            <Stack.Screen name="BeautyServiceSubcategory" component={BeautyServiceSubcategoryScreen} />
             <Stack.Screen name="BeautyGender" component={BeautyGenderScreen} />
             <Stack.Screen name="GenderPicker" component={GenderPickerScreen} />
             <Stack.Screen name="Search" component={SearchScreen} />

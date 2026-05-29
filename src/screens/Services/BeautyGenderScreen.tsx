@@ -17,11 +17,11 @@ const GENDER_OPTIONS = [
     key: 'female',
     label: 'Female',
     emoji: '♀',
-    tagline: '5 services available',
+    tagline: '6 services available',
     bg: ['#FFF0F6', '#FCE4EC'] as [string, string],
     accentColor: '#E91E63',
     image: 'https://images.unsplash.com/photo-1487412947147-5cebf100d293?q=80&w=800&auto=format&fit=crop',
-    services: ['Make Up Artist', 'Hair Styling', 'Facial & Skincare', 'Bridal Service', 'Home Salon'],
+    services: ['Make Up Artist', 'Hair Styling', 'Facial & Skincare', 'Bridal Service', 'Home Salon','Nail Extension' ],
   },
   {
     key: 'male',
@@ -107,7 +107,7 @@ export default function BeautyGenderScreen() {
                 </View>
                 {/* Service chips */}
                 <View style={styles.serviceChips}>
-                  {opt.services.slice(0, 3).map((s) => (
+                  {opt.services.slice(0, 4).map((s) => (
                     <View key={s} style={styles.chip}>
                       <Typography variant="tiny" weight="700" color="rgba(255,255,255,0.9)">
                         {s}

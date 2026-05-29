@@ -2,7 +2,7 @@ import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type TabParamList = {
   Home: undefined;
-  'Help & Support': undefined;
+  'My Bookings': undefined;
   Account: undefined;
 };
 
@@ -17,7 +17,13 @@ export type RootStackParamList = {
   ServiceDetail: { serviceId: string; serviceTitle: string };
   ServiceBookingFlow: { categoryId: string; categoryName: string };
   ServiceScreen: { categoryId: string; categoryName: string };
-  ServiceBookingScreen: { categoryId: string; categoryName: string; selectedServiceId?: string };
+  ServiceBookingScreen: {
+    categoryId: string;
+    categoryName: string;
+    selectedServiceId?: string;
+    subcategoryName?: string;
+    gender?: string;
+  };
   ServiceTracking: { bookingId: string };
   
   // Grocery Stack
@@ -62,6 +68,14 @@ export type RootStackParamList = {
   
   // Subcategory screens
   Subcategory: { categoryId: string; categoryName: string; gender?: string };
+  BeautyServiceSubcategory: {
+    categoryId: string;
+    categoryName: string;
+    serviceId: string;
+    serviceTitle: string;
+    subcategories: string[];
+    gender?: string;
+  };
   BeautyGender: undefined;
   GenderPicker: { categoryId: string; categoryName: string };
 

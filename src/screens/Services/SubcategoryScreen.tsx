@@ -59,13 +59,25 @@ export default function SubcategoryScreen() {
           <Pressable
             key={item.id}
             style={({ pressed }) => [styles.card, pressed && styles.cardPressed]}
-            onPress={() =>
+            onPress={() => {
+              if (item.subcategories && item.subcategories.length > 0) {
+                navigation.navigate('BeautyServiceSubcategory', {
+                  categoryId,
+                  categoryName,
+                  serviceId: item.id,
+                  serviceTitle: item.title,
+                  subcategories: item.subcategories,
+                  gender,
+                });
+                return;
+              }
               navigation.navigate('ServiceBookingScreen', {
                 categoryId,
                 categoryName,
                 selectedServiceId: item.id,
-              })
-            }
+                gender,
+              });
+            }}
           >
             <NetworkImage 
               source={{ uri: item.image }} 
@@ -73,7 +85,7 @@ export default function SubcategoryScreen() {
               resizeMode="cover"
             />
             <LinearGradient
-              colors={['transparent', 'rgba(0,0,0,0.65)']}
+              colors={['transparent', 'rgba(0,0,0,0.6)', 'rgba(0,0,0,0.9)']}
               style={styles.cardGradient}
             />
             {/* Price badge */}
@@ -83,9 +95,9 @@ export default function SubcategoryScreen() {
                 {item.price}
               </Typography>
             </View>
-
-            <View style={styles.cardBody}>
-              <Typography variant="h4" weight="900" color="#fff" style={styles.serviceTitle}>
+            <View style={styles.contentOverlay}>
+              <View style={styles.cardBody}>
+              <Typography variant="h4" weight="800" color="#fff" style={styles.serviceTitle}>
                 {item.title}
               </Typography>
               <View style={styles.metaRow}>
@@ -96,17 +108,18 @@ export default function SubcategoryScreen() {
                 <Typography variant="tiny" color="rgba(255,255,255,0.7)" style={{ marginLeft: 6 }}>
                   ({item.reviews}k reviews)
                 </Typography>
-                <Clock size={12} color="rgba(255,255,255,0.8)" style={{ marginLeft: 10 }} />
+                <Clock size={12} color="rgba(255,255,255,0.8)" style={{ marginLeft: 12 }} />
                 <Typography variant="tiny" color="rgba(255,255,255,0.8)" style={{ marginLeft: 4 }}>
                   {item.duration}
                 </Typography>
               </View>
             </View>
 
-            <View style={styles.bookBtn}>
-              <Typography variant="tiny" weight="900" color={Colors.light.primary}>
-                BOOK NOW
-              </Typography>
+              <View style={styles.bookBtn}>
+                <Typography variant="tiny" weight="900" color={Colors.light.primary}>
+                  BOOK NOW
+                </Typography>
+              </View>
             </View>
           </Pressable>
         ))}
@@ -162,7 +175,7 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.xxl,
     marginBottom: Spacing.lg,
     overflow: 'hidden',
-    height: 200,
+    position: 'relative',
     ...Shadows.light.md,
   },
   cardPressed: { opacity: 0.92, transform: [{ scale: 0.985 }] },
@@ -170,9 +183,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     width: '100%',
     height: '100%',
+    zIndex: 0,
   },
   cardGradient: {
     ...StyleSheet.absoluteFillObject,
+    zIndex: 1,
   },
   priceBadge: {
     position: 'absolute',
@@ -186,12 +201,16 @@ const styles = StyleSheet.create({
     borderRadius: BorderRadius.full,
     ...Shadows.light.sm,
     gap: 2,
+    zIndex: 2,
+  },
+  contentOverlay: {
+    minHeight: 200,
+    justifyContent: 'flex-end',
+    padding: Spacing.md,
+    zIndex: 2,
   },
   cardBody: {
-    position: 'absolute',
-    bottom: 50,
-    left: Spacing.lg,
-    right: Spacing.lg,
+    width: '100%',
   },
   serviceTitle: {
     marginBottom: 4,
@@ -202,11 +221,11 @@ const styles = StyleSheet.create({
   metaRow: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: Spacing.xs,
   },
   bookBtn: {
-    position: 'absolute',
-    bottom: Spacing.md,
-    right: Spacing.md,
+    alignSelf: 'flex-end',
+    marginTop: Spacing.lg,
     backgroundColor: Colors.light.white,
     paddingHorizontal: 14,
     paddingVertical: 6,

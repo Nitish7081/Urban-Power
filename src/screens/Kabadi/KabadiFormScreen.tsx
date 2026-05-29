@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, Image, TextInput, Modal, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { View, StyleSheet, ScrollView, SafeAreaView, Pressable, TextInput, Modal, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { ChevronLeft, Calendar, Clock, MapPin, Truck } from 'lucide-react-native';
 import { Typography } from '../../components/Typography';
@@ -8,6 +8,7 @@ import { Colors, Spacing, BorderRadius, Shadows } from '../../constants/Theme';
 import { KABADI_ITEMS } from '../../constants/MockData';
 import { useAddresses } from '../../hooks/useServices';
 import { useAuthStore } from '../../store/useAuthStore';
+import { NetworkImage } from '../../components/NetworkImage';
 
 import { useKabadiStore } from '../../store/useKabadiStore';
 
@@ -108,7 +109,7 @@ export default function KabadiFormScreen() {
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.content}>
         <View style={styles.selectedBox}>
            <View style={styles.categoryIcon}>
-              <Image source={{ uri: parentCategory?.icon || 'https://cdn-icons-png.flaticon.com/512/2541/2541936.png' }} style={styles.icon} />
+              <NetworkImage source={{ uri: parentCategory?.icon || '' }} style={styles.icon} resizeMode="cover" />
            </View>
            <View style={{ marginLeft: Spacing.md, flex: 1 }}>
               <Typography variant="caption" color={Colors.light.textSecondary} weight="700">

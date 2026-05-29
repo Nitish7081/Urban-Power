@@ -27,6 +27,7 @@ import { ServiceCard } from '../../components/ServiceCard';
 import { ProductCard } from '../../components/ProductCard';
 import { BannerCarousel } from '../../components/BannerCarousel';
 import { SectionHeader } from '../../components/SectionHeader';
+import { ReferAndGetFreeServicesBanner } from '../../components/home/ReferAndGetFreeServicesBanner';
 import { Colors, Spacing, Shadows, BorderRadius } from '../../constants/Theme';
 
 // ─── Service module grid (centralized config) ───────────────────────────────
@@ -242,8 +243,6 @@ export default function HomeScreen() {
           </Pressable>
         </View>
 
-
-
         {/* ── For You ── */}
         <View style={styles.section}>
           <View style={styles.sectionHeaderWrapper}>
@@ -311,6 +310,12 @@ export default function HomeScreen() {
             contentContainerStyle={styles.flatListContent}
           />
         </View>
+
+        {/* ── Refer & Get Free Services ── */}
+        <View style={{ paddingHorizontal: Spacing.lg }}>
+          <ReferAndGetFreeServicesBanner onPress={() => {}} />
+        </View>
+
       </ScrollView>
     </View>
   );
